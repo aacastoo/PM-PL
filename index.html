@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism and Pencil | Sketching & Coloring Hub by Anthon Casto</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <!-- Google Fonts: Inter & Fredoka for Artistic Headings -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+
+    <style>
+        :root {
+            --brand-teal: #00A896;
+            --brand-orange: #FF6B35;
+            --brand-lime: #A7C957;
+            --dark-neutral: #1A1A1A;
+            --light-neutral: #FAFAFA;
+            --card-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-neutral);
+            color: var(--dark-neutral);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Brand Color Utilities */
+        .text-teal { color: var(--brand-teal); }
+        .text-orange { color: var(--brand-orange); }
+        .bg-teal { background-color: var(--brand-teal); color: white; }
+        .bg-orange { background-color: var(--brand-orange); color: white; }
+        .bg-lime { background-color: var(--brand-lime); color: var(--dark-neutral); }
+
+        /* Signature Side Decorative Pencils (Desktop View Only) */
+        .pencil-gutter-left, .pencil-gutter-right {
+            position: fixed;
+            top: 15%;
+            width: 80px;
+            height: 70vh;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 10px;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .pencil-gutter-left {
+            left: 20px;
+            background: linear-gradient(90deg, #f7efe2 0%, #eadaa2 100%);
+            border-left: 12px solid var(--brand-teal);
+        }
+
+        .pencil-gutter-right {
+            right: 20px;
+            background: linear-gradient(90deg, #f7efe2 0%, #eadaa2 100%);
+            border-right: 12px solid var(--brand-orange);
+        }
+
+        .pencil-tip-top {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #d4b483;
+            position: absolute;
+            top: -40px;
+        }
+        
+        .pencil-tip-top::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            bottom: -40px;
+            left: -10px;
+        }
+
+        .pencil-gutter-left .pencil-tip-top::after { border-bottom: 16px solid var(--brand-lime); }
+        .pencil-gutter-right .pencil-tip-top::after { border-bottom: 16px solid var(--brand-orange); }
+
+        .pencil-eraser-bottom {
+            width: 100%;
+            height: 50px;
+            background-color: #e56b6f;
+            position: absolute;
+            bottom: 0;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            border-top: 8px solid #adb5bd;
+        }
+
+        .pencil-text {
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(0,0,0,0.4);
+            transform: rotate(180deg);
+        }
+
+        /* Core Hub Module Cards */
+        .hub-card {
+            background: white;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .card-accent-strip {
+            height: 8px;
+            width: 100%;
+        }
+
+        .btn-brand-primary {
+            background-color: var(--brand-orange);
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .btn-brand-primary:hover {
+            background-color: #e0531f;
+            color: white;
+        }
+
+        /* Adjusted Container Gutter to account for Desktop Pencils */
+        @media (min-width: 1200px) {
+            .main-content-wrapper {
+                padding-left: 120px;
+                padding-right: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Symmetrical Pencils (Hidden on Mobile/Tablet view via Bootstrap utilities) -->
+    <div class="pencil-gutter-left d-none d-xl-flex">
+        <div class="pencil-tip-top"></div>
+        <div class="pencil-text">LEARN &amp; SKETCH</div>
+        <div class="pencil-eraser-bottom"></div>
+    </div>
+
+    <div class="pencil-gutter-right d-none d-xl-flex">
+        <div class="pencil-tip-top"></div>
+        <div class="pencil-text">PRACTICE &amp; PLAY</div>
+        <div class="pencil-eraser-bottom"></div>
+    </div>
+
+    <!-- Navigation Header Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-teal sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fs-3" href="#"><i class="bi bi-pencil-palette me-2"></i>PRISM AND PENCIL</a>
+            <button class="navbar-brand d-xl-none btn btn-sm btn-outline-light px-2 ms-auto me-2" disabled>Mobile View Active</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 font-weight-bold">
+                    <li class="nav-item"><a class="nav-item nav-link active" href="#homepage">Home</a></li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="#tutorials">Video Tutorials</a></li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="#qa">Q&amp;A Forum</a></li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="#galleries">Galleries</a></li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="#resources">Tools &amp; Resources</a></li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header class="bg-white border-bottom py-5 mb-5" id="homepage">
+        <div class="container main-content-wrapper text-center">
+            <span class="badge bg-lime px-3 py-2 text-dark font-monospace mb-3">UI/UX STUDIO PROTOTYPE</span>
+            <h1 class="display-4 fw-bold text-dark mb-3">Master the Art of Drawing</h1>
+            <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                Welcome to Prism and Pencil, a premier digital ecosystem engineered by <strong class="text-dark">Anthon Casto</strong> dedicated entirely to traditional sketching mediums, wax-core blending, and community color tracking.
+            </p>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="#tutorials" class="btn btn-brand-primary btn-lg px-4">Start Sketching <i class="bi bi-arrow-right ms-2"></i></a>
+                <a href="#resources" class="btn btn-outline-secondary btn-lg px-4">Material Catalog</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 6-Module Grid Core Layout -->
+    <main class="container main-content-wrapper pb-5">
+        <div class="row g-4">
+            
+            <!-- 1. Video Tutorials Module -->
+            <div class="col-md-6 col-lg-4" id="tutorials">
+                <div class="hub-card d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="card-accent-strip bg-teal"></div>
+                        <div class="p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-teal text-white rounded-3 px-3 py-2 me-3"><i class="bi bi-play-btn-fill fs-4"></i></div>
+                                <h3 class="h4 mb-0 card-title">Video Tutorials</h3>
+                            </div>
+                            <p class="text-muted small">High-fidelity media placeholder blocks showcasing core drawing tracks, wax layering guides, and realistic charcoal rendering tutorials.</p>
+                            <div class="ratio ratio-16x9 bg-light border rounded mb-3 d-flex align-items-center justify-content-center text-center p-3">
+                                <span class="text-muted"><i class="bi bi-collection-play me-2"></i>[Responsive Media Tutorial Feed]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4"><button class="btn btn-brand-primary w-100">Explore Videos &rarr;</button></div>
+                </div>
+            </div>
+
+            <!-- 2. Q&A Community Module -->
+            <div class="col-md-6 col-lg-4" id="qa">
+                <div class="hub-card d-flex flex-column justify-content-between">
+                    <div>
